@@ -6,6 +6,7 @@
 //
 //
 #include "MyIncludes_gr1.h"
+#include "namespace_ctrl.h"
 
 NAMESPACE_INIT(ctrlGr1);
 

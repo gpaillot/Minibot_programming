@@ -63,7 +63,7 @@ typedef struct StructControl
 
 typedef struct StructPathPlanning
 {
-  //Astar *astar;
+  Astar *astar;
 } StructPathPlanning;
 
 typedef struct StructFSM

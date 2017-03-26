@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=MoonWalker
+PROJECTNAME=Minibot_programming
 
 # Active Configuration
 DEFAULTCONF=Debug
