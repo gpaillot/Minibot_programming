@@ -30,6 +30,7 @@
 
 /*Some mask for users registers*/
 #define mask_brake 0x10  
+#define mask_brake2 0x20
 #define mask_led 0x40 
 
 class MyMotors{
@@ -39,6 +40,8 @@ public:
     void setBrake(bool activate);
     void setLed(bool activate);
     void setSpeed(int speed);
+    double getPosition();
+    double getSpeed();
 private:
     MyMCP2515 *this_can;
     MyDE0Nano *this_nano;

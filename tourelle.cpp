@@ -11,7 +11,7 @@
 #include <pigpio.h>
 #include <bitset>
 #include <ctime>
-#include <math/h>
+#include <math.h>
 #include <sys/time.h>
 
 #include "MyMCP2515.h"
@@ -31,10 +31,7 @@ MyTourelle::MyTourelle(MyMCP2515 *myCan, MyDE0Nano *nano, int address)
     
 }
 MyTourelle::~MyTourelle() //sait pas du tout a quoi ca sert...
-{
-    
-}
-
+{}
 /*set the brake if activate is true, release them is it is false*/
 void MyTourelle::setBrake(bool activate) {
     if(activate)
@@ -100,15 +97,16 @@ int MyTourelle::getNumberBeacon()
  *
  * =>  registers have to be defined in the DE0 nano => register 0x05 and 0x06 for example
  */
-double MyTourelle::*getDataBeacon()
+double* MyTourelle::getDataBeacon()
 {
     double *angle_beacon = new double[2];
-    unsigned char buf[4] = {0x00, 0x00, 0x00, 0x00};
+    //unsigned char buf[4] = {0x00, 0x00, 0x00, 0x00};
+    char buf[4] = {0x00, 0x00, 0x00, 0x00};
     makeData(buf, 0x00, 0x00, 0x00, 0x00, false);
-    nano->readWriteReg(READ, 0x05, buf, 4); // register read of PosEgdeTicks
+    this_nano->readWriteReg(READ, 0x05, (signed char*)buf, 4); // register read of PosEgdeTicks
     int pos_edge_value = spi2data(buf); // converting char value into int value
     makeData(buf, 0x00, 0x00, 0x00, 0x00, false);
-    nano->readWriteReg(READ, 0x05, buf, 4);
+    this_nano->readWriteReg(READ, 0x05, (signed char*)buf, 4);
     int neg_edge_value = spi2data(buf); // register read of PosEgdeTicks
     
     double angle_pos = (pos_edge_value/ticks_number_per_rotation)*2*PI;
@@ -125,11 +123,11 @@ double MyTourelle::*getDataBeacon()
  This function return the number of rising edge seen during 1 rotation
  => a register has to be defined in the DE0 nano => register 0x0a for example
  */
-int nb_rising()
+int MyTourelle::nb_rising()
 {
-    unsigned char buf[4] = {0x00, 0x00, 0x00, 0x00};
+    char buf[4] = {0x00, 0x00, 0x00, 0x00};
     makeData(buf, 0x00, 0x00, 0x00, 0x00, false);
-    nano->readWriteReg(READ, 0x0a, buf, 4);
+    this_nano->readWriteReg(READ, 0x0a, (signed char*)buf, 4);
     return ((int) buf[3]);
     
 }
@@ -137,11 +135,11 @@ int nb_rising()
  This function return the number of rising edge seen during 1 rotation
  => a register has to be defined in the DE0 nano => register 0x0b for example
  */
-int nb_falling()
+int MyTourelle::nb_falling()
 {
-    unsigned char buf[4] = {0x00, 0x00, 0x00, 0x00};
+    char buf[4] = {0x00, 0x00, 0x00, 0x00};
     makeData(buf, 0x00, 0x00, 0x00, 0x00, false);
-    nano->readWriteReg(READ, 0x0b, buf, 4);
+    this_nano->readWriteReg(READ, 0x0b, (signed char*)buf, 4);
     return ((int) buf[3]);
     
 }

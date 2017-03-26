@@ -266,7 +266,7 @@ void MyMCP2515::doInit() {
         CNF3 = (SOF_DISABLE + WAKFIL_DISABLE + (PHSEG2-1)) = 0x02
         */
     
-    this->writeReg( (char) MCP2515_CNF1, 0x07);
+    this->writeReg( (char) MCP2515_CNF1, 0x01); // 0x07 for minibot
     this->writeReg( (char) MCP2515_CNF2, 0x90);
     this->writeReg( (char) MCP2515_CNF3, 0x02);
 

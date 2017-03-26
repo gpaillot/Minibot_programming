@@ -26,8 +26,8 @@ class MyDE0Nano {
 public:
 	MyDE0Nano();
 	virtual ~MyDE0Nano();
-	void readWriteReg(DE0Nano_action action, DE0Nano_spi address, unsigned char* buf, int length);
-	void readWriteReg(DE0Nano_action action, unsigned char address, unsigned char* buf, int length);
+	void readWriteReg(DE0Nano_action action, DE0Nano_spi address, signed char* buf, int length);
+	void readWriteReg(DE0Nano_action action, unsigned char address, signed char* buf, int length);
 	void reset();
 private:
 	int m_msg_length;

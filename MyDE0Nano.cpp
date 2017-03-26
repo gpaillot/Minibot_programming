@@ -45,12 +45,12 @@ MyDE0Nano::MyDE0Nano() {
 MyDE0Nano::~MyDE0Nano() {
 }
 
-void MyDE0Nano::readWriteReg(DE0Nano_action action, DE0Nano_spi address, unsigned char* buf, int length)
+void MyDE0Nano::readWriteReg(DE0Nano_action action, DE0Nano_spi address, signed char* buf, int length)
 {
 	readWriteReg(action, (unsigned char) address, buf, length);
 }
 
-void MyDE0Nano::readWriteReg(DE0Nano_action action, unsigned char address, unsigned char* buf, int length)
+void MyDE0Nano::readWriteReg(DE0Nano_action action, unsigned char address, signed char* buf, int length)
 {
 	if (length != m_msg_length)
 	{
